@@ -1,17 +1,30 @@
 from kivy.app import App
+# GridLayout arranges children in a matrix.
 from kivy.uix.gridlayout import GridLayout
+# Label is used to label something
 from kivy.uix.label import Label
-from kivy.uix.image import Image
-from kivy.uix.button import Button
+# used to take input from users
+from kivy.uix.textinput import TextInput
 
-class Vybe(App):
+
+
+class Vybe(GridLayout):
     
+    def __init__(self, **var_args):
+ 
+        super(Vybe, self).__init__(**var_args)
+        self.cols = 1     # You can change it accordingly
+        self.add_widget(Label(text='What is your mood?'))
+        self.username = TextInput(multiline=False)
+        self.add_widget(self.username)
+        
+class MyApp(App):
     def build(self):
-        self.window=GridLayout()
-        self.window.cols = 1
-        self.window.size_hint = (0.6, 0.7)
-        self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5 }
-        return self.window
+        return Vybe()
+ 
+ 
+if __name__ == '__main__':
+    MyApp().run()
 
-if __name__ == "__main__":
- Vybe().run()
+
+
